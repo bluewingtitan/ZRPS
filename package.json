@@ -5,7 +5,8 @@
   "scripts": {
     "css": "gulp css",
     "watch": "gulp",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "test": "tsc --version"
   },
   "browserslist": [
     "last 3 versions"
@@ -15,7 +16,10 @@
   "private": true,
   "dependencies": {
     "gulp": "^4.0.2",
-    "gulp-less": "^4.0.1"
+    "gulp-less": "^4.0.1",
+    "typescript": "5.8.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main"
+  }
 }

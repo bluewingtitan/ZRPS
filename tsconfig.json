@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "types": ["fvtt-types"],
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "module": "esnext",
+
+    "outDir": "module"
+  },
+
+  "include": ["src/**/*"],
+
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+}
