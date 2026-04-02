@@ -30,8 +30,8 @@
     "verified": "11"
   },
   "grid": {
-    "distance": 5,
-    "units": "ft"
+    "distance": 1,
+    "units": "m"
   },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
