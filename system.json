@@ -15,8 +15,8 @@
       "url": "https://github.com/bluewingtitan"
     }
   ],
-  "esmodules": ["module/simple.js"],
-  "styles": ["styles/simple.css"],
+  "esmodules": ["module/zrps.js"],
+  "styles": ["styles/zrps.css"],
   "packs": [],
   "languages": [
     {
@@ -26,8 +26,8 @@
     }
   ],
   "compatibility": {
-    "minimum": "10",
-    "verified": "11"
+    "minimum": "14",
+    "verified": "14"
   },
   "grid": {
     "distance": 1,
@@ -36,5 +36,5 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "manifest": "https://raw.githubusercontent.com/bluewingtitan/ZRPS/main/system.json",
-  "download": "https://github.com/bluewingtitan/ZRPS/archive/refs/tags/v0.2.zip"
+  "download": "https://github.com/bluewingtitan/ZRPS/archive/refs/tags/v0.3.zip"
 }

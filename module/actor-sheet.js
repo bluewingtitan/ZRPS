@@ -3,9 +3,9 @@ import { ATTRIBUTE_TYPES } from "./constants.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @extends {foundry.appv1.sheets.ActorSheet}
  */
-export class SimpleActorSheet extends ActorSheet {
+export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -34,13 +34,14 @@ export class SimpleActorSheet extends ActorSheet {
     context.shorthand = !!game.settings.get("zrps", "macroShorthand");
     context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
-    context.biographyHTML = await TextEditor.enrichHTML(
-      context.systemData.biography,
-      {
-        secrets: this.document.isOwner,
-        async: true,
-      },
-    );
+    context.biographyHTML =
+      await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+        context.systemData.biography,
+        {
+          secrets: this.document.isOwner,
+          async: true,
+        },
+      );
     return context;
   }
 

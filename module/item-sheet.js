@@ -3,9 +3,9 @@ import { ATTRIBUTE_TYPES } from "./constants.js";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
+ * @extends {foundry.appv1.sheets.ItemSheet}
  */
-export class SimpleItemSheet extends ItemSheet {
+export class SimpleItemSheet extends foundry.appv1.sheets.ItemSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -32,13 +32,14 @@ export class SimpleItemSheet extends ItemSheet {
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
-    context.descriptionHTML = await TextEditor.enrichHTML(
-      context.systemData.description,
-      {
-        secrets: this.document.isOwner,
-        async: true,
-      },
-    );
+    context.descriptionHTML =
+      await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+        context.systemData.description,
+        {
+          secrets: this.document.isOwner,
+          async: true,
+        },
+      );
     return context;
   }
 

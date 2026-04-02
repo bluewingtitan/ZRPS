@@ -9,7 +9,7 @@ import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { createzrpsMacro } from "./macro.js";
+import { createZrpsMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 
 /* -------------------------------------------- */
@@ -33,7 +33,7 @@ Hooks.once("init", async function () {
 
   game.zrps = {
     SimpleActor,
-    createzrpsMacro,
+    createZrpsMacro,
   };
 
   // Define custom Document classes
@@ -43,10 +43,20 @@ Hooks.once("init", async function () {
   CONFIG.Token.objectClass = SimpleToken;
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("zrps", SimpleActorSheet, { makeDefault: true });
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("zrps", SimpleItemSheet, { makeDefault: true });
+  foundry.documents.collections.Actors.unregisterSheet(
+    "core",
+    foundry.appv1.sheets.ActorSheet,
+  );
+  foundry.documents.collections.Actors.registerSheet("zrps", SimpleActorSheet, {
+    makeDefault: true,
+  });
+  foundry.documents.collections.Items.unregisterSheet(
+    "core",
+    foundry.appv1.sheets.ItemSheet,
+  );
+  foundry.documents.collections.Items.registerSheet("zrps", SimpleItemSheet, {
+    makeDefault: true,
+  });
 
   // Register system settings
   game.settings.register("zrps", "macroShorthand", {
@@ -104,7 +114,7 @@ Hooks.once("init", async function () {
 /**
  * Macrobar hook.
  */
-Hooks.on("hotbarDrop", (bar, data, slot) => createzrpsMacro(data, slot));
+Hooks.on("hotbarDrop", (bar, data, slot) => createZrpsMacro(data, slot));
 
 /**
  * Adds the actor template context menu.
