@@ -36,5 +36,5 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "manifest": "https://raw.githubusercontent.com/bluewingtitan/ZRPS/main/system.json",
-  "download": "https://github.com/bluewingtitan/ZRPS/archive/refs/tags/v0.1.zip"
+  "download": "https://github.com/bluewingtitan/ZRPS/archive/refs/tags/v0.2.zip"
 }
