@@ -1,6 +1,6 @@
 {
   "id": "zrps",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "title": "ZRPS",
   "url": "https://github.com/bluewingtitan/ZRPS",
   "description": "A minimalist game system which provides configurable Actor and Item templates to support free-form system agnostic game-play.",
@@ -36,5 +36,5 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "manifest": "https://raw.githubusercontent.com/bluewingtitan/ZRPS/main/system.json",
-  "download": "https://github.com/bluewingtitan/ZRPS/archive/refs/tags/v0.3.zip"
+  "download": "https://github.com/bluewingtitan/ZRPS/archive/refs/tags/v0.4.0.zip"
 }
