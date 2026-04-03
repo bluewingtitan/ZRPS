@@ -6,8 +6,8 @@
   .zrps-tailwind {
     @import "tailwindcss/preflight.css";
 
-    .input{
-        @apply bg-transparent border border-gray-500 rounded px-1 py-0 text-sm;
+    .input {
+      @apply bg-transparent border border-gray-500 rounded px-1 py-0 text-sm;
     }
   }
 }
