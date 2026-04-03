@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/@league-of-foundry-developers/foundry-vtt-types/src/index-lenient.d.mts" />
+/// <reference path="../node_modules/fvtt-types/src/index-lenient.d.mts" />
 
 export {}; // make this a module so that `declare global` augmentations apply
 

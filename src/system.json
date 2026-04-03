@@ -38,8 +38,8 @@
       "character": {}
     }
   },
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
+  "primaryTokenAttribute": "hp",
+  "secondaryTokenAttribute": "st",
   "manifest": "https://raw.githubusercontent.com/bluewingtitan/ZRPS/main/system.json",
   "download": "https://github.com/bluewingtitan/ZRPS/archive/refs/tags/v0.4.1.zip"
 }

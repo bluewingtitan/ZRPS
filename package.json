@@ -12,10 +12,10 @@
   "author": "bluewingtitan",
   "license": "MIT",
   "devDependencies": {
-    "@league-of-foundry-developers/foundry-vtt-types": "latest",
+    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main",
+    "less": "^4.2.2",
     "typescript": "^5.8.3",
     "vite": "^6.2.5",
-    "vite-plugin-static-copy": "^2.3.0",
-    "less": "^4.2.2"
+    "vite-plugin-static-copy": "^2.3.0"
   }
 }

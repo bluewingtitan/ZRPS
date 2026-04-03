@@ -7,7 +7,8 @@
 import { SimpleActor } from "./actor";
 import { SimpleItem } from "./item";
 import { SimpleItemSheet } from "./item-sheet";
-import { SimpleActorSheet } from "./actor-sheet";
+import { ZrpsActorSheet } from "./actor-sheet";
+import { CharacterData } from "./actor-data";
 import { preloadHandlebarsTemplates } from "./templates";
 import { createZrpsMacro } from "./macro";
 import { SimpleToken, SimpleTokenDocument } from "./token";
@@ -47,13 +48,15 @@ Hooks.once("init", async function () {
   CONFIG.Token.documentClass = SimpleTokenDocument;
   CONFIG.Token.objectClass = SimpleToken;
 
+  // Register system data models
+  CONFIG.Actor.dataModels.character = CharacterData;
+
   // Register sheet application classes
-  foundry.documents.collections.Actors.unregisterSheet(
-    "core",
-    foundry.appv1.sheets.ActorSheet,
-  );
-  foundry.documents.collections.Actors.registerSheet("zrps", SimpleActorSheet, {
+  Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  Actors.registerSheet("zrps", ZrpsActorSheet, {
+    types: ["character"],
     makeDefault: true,
+    label: "ZRPS.SheetCharacter",
   });
   foundry.documents.collections.Items.unregisterSheet(
     "core",
