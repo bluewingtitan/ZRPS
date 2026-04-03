@@ -11,10 +11,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "types": [
-      "@league-of-foundry-developers/foundry-vtt-types/index-lenient"
-    ]
+    "skipLibCheck": true
   },
   "include": ["src/**/*"]
 }

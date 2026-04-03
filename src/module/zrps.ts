@@ -4,13 +4,18 @@
  */
 
 // Import Modules
-import { SimpleActor } from "./actor.js";
-import { SimpleItem } from "./item.js";
-import { SimpleItemSheet } from "./item-sheet.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
-import { preloadHandlebarsTemplates } from "./templates.js";
-import { createZrpsMacro } from "./macro.js";
-import { SimpleToken, SimpleTokenDocument } from "./token.js";
+import { SimpleActor } from "./actor";
+import { SimpleItem } from "./item";
+import { SimpleItemSheet } from "./item-sheet";
+import { SimpleActorSheet } from "./actor-sheet";
+import { preloadHandlebarsTemplates } from "./templates";
+import { createZrpsMacro } from "./macro";
+import { SimpleToken, SimpleTokenDocument } from "./token";
+
+/** Type-safe accessor for the `game` global (only call inside Foundry hooks). */
+function g(): ReadyGame {
+  return game as ReadyGame;
+}
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -31,7 +36,7 @@ Hooks.once("init", async function () {
     decimals: 2,
   };
 
-  game.zrps = {
+  g().zrps = {
     SimpleActor,
     createZrpsMacro,
   };
@@ -59,7 +64,7 @@ Hooks.once("init", async function () {
   });
 
   // Register system settings
-  game.settings.register("zrps", "macroShorthand", {
+  g().settings.register("zrps", "macroShorthand", {
     name: "SETTINGS.SimpleMacroShorthandN",
     hint: "SETTINGS.SimpleMacroShorthandL",
     scope: "world",
@@ -69,7 +74,7 @@ Hooks.once("init", async function () {
   });
 
   // Register initiative setting.
-  game.settings.register("zrps", "initFormula", {
+  g().settings.register("zrps", "initFormula", {
     name: "SETTINGS.SimpleInitFormulaN",
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
@@ -80,7 +85,7 @@ Hooks.once("init", async function () {
   });
 
   // Retrieve and assign the initiative formula setting.
-  const initFormula = game.settings.get("zrps", "initFormula");
+  const initFormula = g().settings.get("zrps", "initFormula") as string;
   _simpleUpdateInit(initFormula);
 
   /**
@@ -88,12 +93,12 @@ Hooks.once("init", async function () {
    * @param {string} formula - Dice formula to evaluate.
    * @param {boolean} notify - Whether or not to post nofications.
    */
-  function _simpleUpdateInit(formula, notify = false) {
+  function _simpleUpdateInit(formula: string, notify: boolean = false): void {
     const isValid = Roll.validate(formula);
     if (!isValid) {
       if (notify)
-        ui.notifications.error(
-          `${game.i18n.localize("SIMPLE.NotifyInitFormulaInvalid")}: ${formula}`,
+        ui.notifications!.error(
+          `${g().i18n.localize("SIMPLE.NotifyInitFormulaInvalid")}: ${formula}`,
         );
       return;
     }
@@ -122,29 +127,29 @@ Hooks.on("hotbarDrop", (bar, data, slot) => createZrpsMacro(data, slot));
 Hooks.on("getActorDirectoryEntryContext", (html, options) => {
   // Define an actor as a template.
   options.push({
-    name: game.i18n.localize("SIMPLE.DefineTemplate"),
+    name: g().i18n.localize("SIMPLE.DefineTemplate"),
     icon: '<i class="fas fa-stamp"></i>',
     condition: (li) => {
-      const actor = game.actors.get(li.data("documentId"));
-      return !actor.isTemplate;
+      const actor = g().actors!.get(li.data("documentId"));
+      return !actor!.isTemplate;
     },
     callback: (li) => {
-      const actor = game.actors.get(li.data("documentId"));
-      actor.setFlag("zrps", "isTemplate", true);
+      const actor = g().actors!.get(li.data("documentId"));
+      actor!.setFlag("zrps", "isTemplate", true);
     },
   });
 
   // Undefine an actor as a template.
   options.push({
-    name: game.i18n.localize("SIMPLE.UnsetTemplate"),
+    name: g().i18n.localize("SIMPLE.UnsetTemplate"),
     icon: '<i class="fas fa-times"></i>',
     condition: (li) => {
-      const actor = game.actors.get(li.data("documentId"));
-      return actor.isTemplate;
+      const actor = g().actors!.get(li.data("documentId"));
+      return actor!.isTemplate;
     },
     callback: (li) => {
-      const actor = game.actors.get(li.data("documentId"));
-      actor.setFlag("zrps", "isTemplate", false);
+      const actor = g().actors!.get(li.data("documentId"));
+      actor!.setFlag("zrps", "isTemplate", false);
     },
   });
 });
@@ -155,29 +160,29 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
 Hooks.on("getItemDirectoryEntryContext", (html, options) => {
   // Define an item as a template.
   options.push({
-    name: game.i18n.localize("SIMPLE.DefineTemplate"),
+    name: g().i18n.localize("SIMPLE.DefineTemplate"),
     icon: '<i class="fas fa-stamp"></i>',
     condition: (li) => {
-      const item = game.items.get(li.data("documentId"));
-      return !item.isTemplate;
+      const item = g().items!.get(li.data("documentId"));
+      return !item!.isTemplate;
     },
     callback: (li) => {
-      const item = game.items.get(li.data("documentId"));
-      item.setFlag("zrps", "isTemplate", true);
+      const item = g().items!.get(li.data("documentId"));
+      item!.setFlag("zrps", "isTemplate", true);
     },
   });
 
   // Undefine an item as a template.
   options.push({
-    name: game.i18n.localize("SIMPLE.UnsetTemplate"),
+    name: g().i18n.localize("SIMPLE.UnsetTemplate"),
     icon: '<i class="fas fa-times"></i>',
     condition: (li) => {
-      const item = game.items.get(li.data("documentId"));
-      return item.isTemplate;
+      const item = g().items!.get(li.data("documentId"));
+      return item!.isTemplate;
     },
     callback: (li) => {
-      const item = game.items.get(li.data("documentId"));
-      item.setFlag("zrps", "isTemplate", false);
+      const item = g().items!.get(li.data("documentId"));
+      item!.setFlag("zrps", "isTemplate", false);
     },
   });
 });

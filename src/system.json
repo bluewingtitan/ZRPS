@@ -33,6 +33,11 @@
     "distance": 1,
     "units": "m"
   },
+  "documentTypes": {
+    "Actor": {
+      "character": {}
+    }
+  },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "manifest": "https://raw.githubusercontent.com/bluewingtitan/ZRPS/main/system.json",

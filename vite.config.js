@@ -14,7 +14,7 @@ export default defineConfig({
     rollupOptions: {
       // Two entry points: the JS bundle and the LESS stylesheet
       input: {
-        zrps: path.resolve(__dirname, "src/module/zrps.js"),
+        zrps: path.resolve(__dirname, "src/module/zrps.ts"),
         styles: path.resolve(__dirname, "src/styles/zrps.less"),
       },
       output: {
@@ -48,7 +48,7 @@ export default defineConfig({
       targets: [
         // Manifests
         { src: "src/system.json", dest: "." },
-        { src: "src/template.json", dest: "." },
+        //{ src: "src/template.json", dest: "." },
         // Handlebars templates
         { src: "src/templates", dest: "." },
         // Localisation
