@@ -36,6 +36,9 @@
   "documentTypes": {
     "Actor": {
       "character": {}
+    },
+    "Item": {
+      "item": {}
     }
   },
   "primaryTokenAttribute": "hp",

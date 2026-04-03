@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -15,7 +16,7 @@ export default defineConfig({
       // Two entry points: the JS bundle and the LESS stylesheet
       input: {
         zrps: path.resolve(__dirname, "src/module/zrps.ts"),
-        styles: path.resolve(__dirname, "src/styles/zrps.less"),
+        styles: path.resolve(__dirname, "src/styles/zrps.css"),
       },
       output: {
         // JS bundle goes to scripts/
@@ -36,14 +37,8 @@ export default defineConfig({
     },
   },
 
-  css: {
-    // Vite handles Less natively when the `less` package is installed
-    preprocessorOptions: {
-      less: {},
-    },
-  },
-
   plugins: [
+    tailwindcss(),
     viteStaticCopy({
       targets: [
         // Manifests

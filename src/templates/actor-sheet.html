@@ -1,25 +1,36 @@
 {{!-- ZRPS Actor Sheet --}}
-<div class="zrps actor-sheet">
+<div class="zrps-tailwind flex flex-col gap-4 p-4 h-full">
 
-  <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
-    <div class="header-fields">
-      <h1><input type="text" name="name" value="{{actor.name}}" placeholder="Character Name" /></h1>
+  {{!-- Header: portrait + name + HP --}}
+  <header class="flex flex-row gap-4 items-center">
+    <img class="w-20 h-20 rounded object-cover cursor-pointer flex-shrink-0"
+         src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
 
-      <div class="resource hp">
-        <label>HP</label>
-        <input type="number" name="system.hp.value" value="{{system.hp.value}}" />
-        <span>/</span>
-        <input type="number" name="system.hp.max" value="{{system.hp.max}}" />
+    <div class="flex flex-col gap-2 flex-1 min-w-0">
+      <input class="input text-xl w-full"
+             type="text" name="name" value="{{actor.name}}" placeholder="Character Name" />
+
+      <div class="flex flex-row items-center gap-2">
+        <span class="text-sm font-semibold text-gray-500 uppercase tracking-wide w-6">HP</span>
+        <input class="input w-14 text-center"
+               type="number" name="system.hp.value" value="{{system.hp.value}}" />
+        <span class="text-gray-400">/</span>
+        <input class="input w-14 text-center"
+               type="number" name="system.hp.max" value="{{system.hp.max}}" />
       </div>
     </div>
   </header>
 
-  <section class="stats-row">
+  {{!-- Divider --}}
+  <hr class="border-gray-300" />
+
+  {{!-- Stats row: ST DX IQ HT --}}
+  <section class="flex flex-row justify-around">
     {{#each stats as |stat|}}
-    <div class="stat">
-      <label class="stat-label">{{stat.label}}</label>
-      <input class="stat-value" type="number" name="system.{{stat.key}}" value="{{stat.value}}" />
+    <div class="flex flex-col items-center gap-1">
+      <label class="text-xs font-bold uppercase tracking-widest text-gray-500">{{stat.label}}</label>
+      <input class="input w-14 text-center text-lg"
+             type="number" name="system.{{stat.key}}" value="{{stat.value}}" />
     </div>
     {{/each}}
   </section>

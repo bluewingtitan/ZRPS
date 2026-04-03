@@ -6,7 +6,8 @@
 // Import Modules
 import { SimpleActor } from "./actor";
 import { SimpleItem } from "./item";
-import { SimpleItemSheet } from "./item-sheet";
+import { ZrpsItemSheet } from "./item-sheet";
+import { ItemData } from "./item-data";
 import { ZrpsActorSheet } from "./actor-sheet";
 import { CharacterData } from "./actor-data";
 import { preloadHandlebarsTemplates } from "./templates";
@@ -50,10 +51,11 @@ Hooks.once("init", async function () {
 
   // Register system data models
   CONFIG.Actor.dataModels.character = CharacterData;
+  CONFIG.Item.dataModels.item = ItemData;
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-  Actors.registerSheet("zrps", ZrpsActorSheet, {
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet("zrps", ZrpsActorSheet, {
     types: ["character"],
     makeDefault: true,
     label: "ZRPS.SheetCharacter",
@@ -62,7 +64,7 @@ Hooks.once("init", async function () {
     "core",
     foundry.appv1.sheets.ItemSheet,
   );
-  foundry.documents.collections.Items.registerSheet("zrps", SimpleItemSheet, {
+  foundry.documents.collections.Items.registerSheet("zrps", ZrpsItemSheet, {
     makeDefault: true,
   });
 

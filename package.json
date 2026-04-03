@@ -12,8 +12,8 @@
   "author": "bluewingtitan",
   "license": "MIT",
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
     "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main",
-    "less": "^4.2.2",
     "typescript": "^5.8.3",
     "vite": "^6.2.5",
     "vite-plugin-static-copy": "^2.3.0"

@@ -9,6 +9,9 @@
   "SIMPLE.ItemDelete": "Delete Item",
   "SIMPLE.ItemNew": "New Item",
 
+  "TYPES.Actor.character": "Actor",
+  "TYPES.Item.item": "Item",
+
   "SIMPLE.NotifyInitFormulaUpdated": "Initiative formula was updated to",
   "SIMPLE.NotifyInitFormulaInvalid": "Initiative formula was invalid",
   "SIMPLE.NotifyGroupDuplicate": "Attribute group already exists.",
