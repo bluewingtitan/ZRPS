@@ -15,7 +15,7 @@
       "url": "https://github.com/bluewingtitan"
     }
   ],
-  "esmodules": ["module/zrps.js"],
+  "esmodules": ["scripts/zrps.js"],
   "styles": ["styles/zrps.css"],
   "packs": [],
   "languages": [

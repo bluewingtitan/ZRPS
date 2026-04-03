@@ -1,14 +1,20 @@
 {
   "compilerOptions": {
-    "types": ["fvtt-types"],
-    "moduleResolution": "bundler",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "DOM"],
     "allowJs": true,
-    "module": "esnext",
-
-    "outDir": "module"
+    "checkJs": false,
+    "strict": false,
+    "noEmit": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": [
+      "@league-of-foundry-developers/foundry-vtt-types/index-lenient"
+    ]
   },
-
-  "include": ["src/**/*"],
-
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  "include": ["src/**/*"]
 }
