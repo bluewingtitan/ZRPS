@@ -1,4 +1,6 @@
-import type { NumberField as NF, SchemaField as SF, DataSchema } from "fvtt-types/src/foundry/common/data/fields.mjs";
+import type { NumberField as NF, SchemaField as SF, DataSchema as DF } from "fvtt-types/src/foundry/common/data/fields.mjs";
+
+import type TActor from "fvtt-types/src/foundry/client/documents/actor.mjs"
 
 const { TypeDataModel, fields } = foundry.abstract;
 const { NumberField, SchemaField } = foundry.data.fields as any;
@@ -6,19 +8,19 @@ const { NumberField, SchemaField } = foundry.data.fields as any;
 /** Current schema version. Bump this when fields are added or renamed. */
 const CURRENT_VERSION = 1;
 
-interface HpSchema extends DataSchema {
+interface HpSchema extends DF {
   value: NF;
   max: NF;
 }
 
-/** Shape of a raw source document before migration. */
-interface CharacterSource {
-  schemaVersion?: number;
-  hp?: { value?: number; max?: number };
-  st?: number;
-  dx?: number;
-  iq?: number;
-  ht?: number;
+/** Shape of a character document (assumes migration) */
+interface CharacterShape {
+  schemaVersion: number;
+  hp: { value: number; max: number };
+  st: number;
+  dx: number;
+  iq: number;
+  ht: number;
   [key: string]: unknown;
 }
 
@@ -55,7 +57,7 @@ export class CharacterData extends TypeDataModel {
    *   (none) → 1 : Initial structured schema. Pre-migration actors had free-form
    *                attributes; we seed all missing stat fields with their defaults.
    */
-  static migrateData(source: CharacterSource): CharacterSource {
+  static migrateData(source: CharacterShape): CharacterShape {
     // Version absent means the actor predates the structured schema.
     if (source.schemaVersion === undefined || source.schemaVersion < 1) {
       source.hp  ??= { value: 10, max: 10 };
@@ -72,5 +74,13 @@ export class CharacterData extends TypeDataModel {
     // if (source.schemaVersion < 2) { ... source.schemaVersion = 2; }
 
     return super.migrateData(source);
+  }
+
+  get t_(): CharacterShape{
+    return this as unknown as CharacterShape
+  }
+
+  get parent_(): TActor{
+    return (this as any).parent as TActor;
   }
 }
